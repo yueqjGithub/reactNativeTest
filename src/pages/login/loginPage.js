@@ -9,8 +9,7 @@ const LoginPage = ({ navigation }) => {
   const [code, setCode] = useState()
   const [mobileReg, setMobileReg] = useState(true)
   const [codeIsNull, setCodeIsNull] = useState(false)
-  const [codeLimit, setCodeLimit] = useState('获取')
-  const [myInterval, setMyInterval] = useState()
+  const [codeLimit, setCodeLimit] = useState(60)
   const mobileRegExp = /^[1][3,4,5,7,8][0-9]{9}$/
   const toIndex = () => {
     navigation.navigate('Index')
@@ -39,6 +38,11 @@ const LoginPage = ({ navigation }) => {
     }
   }
 
+  const changeLimit = () => {
+    setCodeLimit(59)
+    console.log(codeLimit)
+  }
+
   return (
     <SafeAreaView>
       <View style={[globalStyle.paRowMd, globalStyle.bgWhite, globalStyle.fillScreen]}>
@@ -62,7 +66,7 @@ const LoginPage = ({ navigation }) => {
               ></TextInput>
             </View>
             <View style={globalStyle.flex1}>
-              <Button title={codeLimit} color="#393939" style={style.codeBtn}></Button>
+              <Button title={codeLimit === 60 ? '获取' : `${codeLimit}`} color="#393939" style={style.codeBtn} onPress={() => changeLimit()}></Button>
             </View>
           </View>
           <Text style={style.hint}>{!codeIsNull ? '' : '请输入验证码'}</Text>
