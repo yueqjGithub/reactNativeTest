@@ -1,9 +1,21 @@
 import { StyleSheet } from 'react-native'
 
 const globalStyle = StyleSheet.create({
+  bgDebug: {
+    backgroundColor: 'red'
+  },
+  bgDebug1: {
+    backgroundColor: 'yellow'
+  },
   // *
   fillScreen: {
     width: '100%',
+    height: '100%'
+  },
+  fullWidth: {
+    width: '100%'
+  },
+  fullHeight: {
     height: '100%'
   },
   bgWhite: {

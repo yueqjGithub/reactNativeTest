@@ -17,7 +17,7 @@ function App() {
       <NavigationContainer>
         <Stack.Navigator initialRouteName={'Login'}>
           <Stack.Screen name="Login" component={LoginPage} options={{ title: '登录', headerShown: false }} />
-          <Stack.Screen name="Index" component={IndexPage} options={{ title: '首页' }} />
+          <Stack.Screen name="Index" component={IndexPage} options={{ title: '首页', headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
