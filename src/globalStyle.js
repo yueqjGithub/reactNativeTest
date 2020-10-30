@@ -22,6 +22,9 @@ const globalStyle = StyleSheet.create({
     backgroundColor: '#ffffff'
   },
   // pa-ma
+  maSM: {
+    margin: 10,
+  },
   paMd: {
     padding: 20
   },
@@ -56,6 +59,12 @@ const globalStyle = StyleSheet.create({
     paddingBottom: 20
   },
   // flex
+  flexWrap: {
+    flexWrap: 'wrap'
+  },
+  flexNoWrap: {
+    flexWrap: 'nowrap'
+  },
   flex1: {
     flex: 1
   },
