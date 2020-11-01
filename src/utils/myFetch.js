@@ -9,16 +9,18 @@ axios.defaults.timeout = 15000
 axios.interceptors.request.use(async config => { //拦截器处理
   // config.headers['Authorization'] = "12233334"
   // config.headers['token'] = "rreebjjj"
-  const info = await Storage.load({key: 'userInfo'})
-  if (info.token) {
-    config.headers['Authorization'] = info.token
+  const info = await Storage.load({key: 'userInfo', autoSync: false}).catch(err => {
+    console.log('没有找到token')
+  })
+  if (info) {
+    if (info.token) {
+      config.headers['Authorization'] = info.token
+    }
   }
-  console.log(config)
   return config
 })
 
 axios.interceptors.response.use(response => { //请求返回数据处理
-  //console.log(response)
   if (response.status === '200' || response.status === 200) {
     return response.data
   } else {

@@ -62,11 +62,10 @@ const LoginPage = ({ navigation }) => {
       setCodeIsNull(true);
     }
   };
-
+  // 获取验证码
   const queryCode = async () => {
     setCodeQuery(true)
     const res = await http.post(urls.queryValiCode, { mobile: mobile })
-    console.log(res)
     setCodeQuery(false)
     if (res.code === 'success') {
       toastRef.current.show(res.msg, 1500)
@@ -164,7 +163,7 @@ const LoginPage = ({ navigation }) => {
             />
           </View>
           <View style={[style.btnItem, globalStyle.paColMd]}>
-            <Button title="微信授权登录" onPress={() => toIndex()} buttonStyle={{color: '#ffffff'}}
+            <Button title="微信授权登录" onPress={() => {}} buttonStyle={{color: '#ffffff'}}
             icon={
               <Image source={require('../../assets/images/weixin.png')} style={{width: 21,height: 17, marginRight: 3}}></Image>
             }

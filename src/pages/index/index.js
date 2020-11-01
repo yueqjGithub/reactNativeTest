@@ -9,8 +9,9 @@ import http from '../../utils/myFetch';
 import urls from '../../utils/urls';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import MenuItem from './menuItem';
+import CusTab from '../../components/commonTabBar'
 
-const IndexPage = ({ navigation }) => {
+const IndexPage = ({ navigation, route }) => {
   const [balance, setBalance] = useState(0)
   const [income, setIncome] = useState(0)
   const [totalIncom, setTotalIncome] = useState(0)
@@ -86,6 +87,9 @@ const IndexPage = ({ navigation }) => {
             <Image source={require('../../assets/images/share.png')} style={{width: '100%', height: 60}} resizeMethod={'auto'}></Image>
           </TouchableHighlight>
         </View>
+        <View style={[style.cusTabStyle, globalStyle.paRowLg, globalStyle.paColMd, globalStyle.flexRow, globalStyle.flexJstArd, globalStyle.flexAliCenter]}>
+          <CusTab navigation={navigation} route={route} /> 
+        </View>
       </View>
       <Toast ref={toastRef} position={'center'}/>
     </SafeAreaView>
@@ -110,6 +114,15 @@ const style = StyleSheet.create({
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: '#f8f8f8'
+  },
+  cusTabStyle: {
+    position: "absolute",
+    bottom: 0,
+    width: '100%',
+    // backgroundColor: 'yellow'
+    borderTopColor: '#F7F7F7',
+    borderTopWidth: 1,
+    borderStyle: 'solid'
   }
 })
 export default IndexPage
