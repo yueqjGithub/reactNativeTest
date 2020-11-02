@@ -41,7 +41,7 @@ export default CustomerPage = ({ navigation }) => {
   const [sheetOptions, setOptions] = useState([])
 
   useEffect(() => {
-    http.post(urls.queryMemberTotal).then(res => {
+    http.post(urls.queryAgentTotal).then(res => {
       if (res.sub_member_count) {
         setMemberCount(res.sub_member_count)
       }
