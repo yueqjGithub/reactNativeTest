@@ -34,8 +34,8 @@ const IndexPage = ({ navigation, route }) => {
   }
 
   const MenuMap = [
-    {title: '我的客户', img: require('../../assets/images/kehu.png'), routeName: null},
-    {title: '我的代理', img: require('../../assets/images/daili.png'), routeName: null},
+    {title: '我的客户', img: require('../../assets/images/kehu.png'), routeName: 'Customer'},
+    {title: '我的代理', img: require('../../assets/images/daili.png'), routeName: 'Agent'},
     {title: '收益明细', img: require('../../assets/images/shouyi.png'), routeName: null},
     {title: '提现记录', img: require('../../assets/images/tixian.png'), routeName: null},
     {title: '邀请客户', img: require('../../assets/images/yaoqing.png'), routeName: null},
@@ -87,7 +87,7 @@ const IndexPage = ({ navigation, route }) => {
             <Image source={require('../../assets/images/share.png')} style={{width: '100%', height: 60}} resizeMethod={'auto'}></Image>
           </TouchableHighlight>
         </View>
-        <View style={[style.cusTabStyle, globalStyle.paRowLg, globalStyle.paColMd, globalStyle.flexRow, globalStyle.flexJstArd, globalStyle.flexAliCenter]}>
+        <View style={[style.cusTabStyle, globalStyle.paRowLg, globalStyle.paColMd, globalStyle.flexRow, globalStyle.flexJstCenter, globalStyle.flexAliCenter]}>
           <CusTab navigation={navigation} route={route} /> 
         </View>
       </View>
