@@ -12,7 +12,7 @@ const listItem = ({item}) => {
     <View style={[globalStyle.fullWidth, globalStyle.flexJstard, globalStyle.flexAliCenter, globalStyle.paColMd]}>
       <View style={[globalStyle.fullWidth, globalStyle.flexRow, globalStyle.flexJstBtw, globalStyle.flexAliEnd]}>
         <Text style={{fontSize: 18, fontFamily: 'DINEngschrift', color: '#333333'}}>{item.user_name}</Text>
-        <Text style={{fontSize: 22, fontFamily: 'DINEngschrift', color: '#333333'}}>{item.total_amount}</Text>
+        <Text style={{fontSize: 22, fontFamily: 'DINEngschrift', color: '#333333'}}>{item.amount}</Text>
       </View>
       <View style={[globalStyle.fullWidth, globalStyle.flexRow, globalStyle.flexJstBtw, globalStyle.flexAliCenter]}>
         <Text style={{fontSize: 14, color: '#AAABAB'}}>绑定时间 {item.create_time}</Text>
@@ -30,12 +30,12 @@ export default CustomerPage = ({ navigation }) => {
   const toastRef = useRef(null)
 
   useEffect(() => {
-    http.post(urls.queryMemberTotal).then(res => {
-      if (res.sub_member_count) {
-        setMemberCount(res.sub_member_count)
+    http.post(urls.queryMemberTotal, {type: 2}).then(res => {
+      if (res.costomer_count) {
+        setMemberCount(res.costomer_count)
       }
-      if (res.sub_member_total_income) {
-        setIncome(res.sub_member_total_income)
+      if (res.commission) {
+        setIncome(res.commission)
       }
     }).catch(() => {
       toastRef.current.show('获取数据失败', 2000)
@@ -49,7 +49,8 @@ export default CustomerPage = ({ navigation }) => {
   const loadPage = () => {
     const obj = {
       thisPage: cur,
-      thisCount: 20
+      thisCount: 20,
+      type: 2
     }
     console.log(obj)
     http.post(urls.queryMemberList, obj).then(res => {
