@@ -1,7 +1,7 @@
 import axios from 'axios';
 import qs from 'querystring';
-import storage from './storage';
-import Storage from './storage'
+import Storage from './storage';
+import * as RootNavigation from '../utils/navigateAuth';
 axios.defaults.baseURL = 'https://8696230.iidingyun.com/'
 axios.defaults.timeout = 15000
 // // axios拦截器
@@ -22,7 +22,15 @@ axios.interceptors.request.use(async config => { //拦截器处理
 
 axios.interceptors.response.use(response => { //请求返回数据处理
   if (response.status === '200' || response.status === 200) {
-    return response.data
+    if (response.data.code === 'jwt_token_expired') { // 登录过期
+      Storage.remove({
+        key: 'userInfo'
+      }); // 清除token
+      RootNavigation.navigate('Login')
+      throw Error(response.data.msg || '登录过期')
+    } else {
+      return response.data
+    }
   } else {
     // 非200请求抱错
     throw Error(response.opt || '服务异常')

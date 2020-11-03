@@ -89,9 +89,10 @@ const LoginPage = ({ navigation }) => {
       code: code
     }
     setLoginLoading(true)
-    const res = await http.post(urls.codeLogin, obj)
+    const res = await http.post(urls.codeLogin, obj).catch(err => {
+      console.log(err)
+    })
     setLoginLoading(false)
-    console.log(res)
     if (res.code === 'success') {
       // 登录成功
       Storage.save({

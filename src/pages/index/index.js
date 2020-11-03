@@ -36,8 +36,8 @@ const IndexPage = ({ navigation, route }) => {
   const MenuMap = [
     {title: '我的客户', img: require('../../assets/images/kehu.png'), routeName: 'Customer'},
     {title: '我的代理', img: require('../../assets/images/daili.png'), routeName: 'Agent'},
-    {title: '收益明细', img: require('../../assets/images/shouyi.png'), routeName: null},
-    {title: '提现记录', img: require('../../assets/images/tixian.png'), routeName: null},
+    {title: '收益明细', img: require('../../assets/images/shouyi.png'), routeName: 'Earn'},
+    {title: '提现记录', img: require('../../assets/images/tixian.png'), routeName: 'WithdrawList'},
     {title: '邀请客户', img: require('../../assets/images/yaoqing.png'), routeName: null},
   ]
 
