@@ -9,6 +9,7 @@ import urls from '../../utils/urls';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import CusTab from '../../components/commonTabBar';
 import Storage from '../../utils/storage'
+// import Picker from 'react-native-picker';
 
 const MinePage = ({ navigation, route }) => {
   const toastRef = useRef(null)
@@ -33,13 +34,37 @@ const MinePage = ({ navigation, route }) => {
   const logOut = () => {
     Alert.alert('确定要退出登录吗', '',
       [
-        { text: "取消", onPress: () => {} },
-        { text: "确认", onPress: () => {
-          Storage.remove({
-            key: 'userInfo'
-          }); // 清除token
-          navigation.navigate('Login');
-        }}
+        {
+          text: "取消", onPress: () => {
+            // Picker.init({
+            //   pickerConfirmBtnText: '确定',
+            //   pickerCancelBtnText: '取消',
+            //   pickerTitleText: '',
+            //   pickerData: [1,2,3,4,5,6,7,8],
+            //   pickerToolBarBg: [255,255,255,1],
+            //   pickerBg: [255,255,255,1],
+            //   selectedValue: [1],
+            //   onPickerConfirm: data => {
+            //     console.log(data);
+            //   },
+            //   onPickerCancel: data => {
+            //     console.log(data);
+            //   },
+            //   onPickerSelect: data => {
+            //     console.log(data);
+            //   }
+            // });
+            // Picker.show();
+          }
+        },
+        {
+          text: "确认", onPress: () => {
+            Storage.remove({
+              key: 'userInfo'
+            }); // 清除token
+            navigation.navigate('Login');
+          }
+        }
       ]
     );
   }
