@@ -9,11 +9,15 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 // pages
 import LoginPage from './src/pages/login/loginPage';
 import IndexPage from './src/pages/index/index';
-import MinePage from './src/pages/mine/mine'
+import MinePage from './src/pages/mine/mine';
+import MineDetailPage from './src/pages/mine/mineDetail';
+import EditNagePage from './src/pages/mine/editName'
 import CustomerPage from './src/pages/customer/customer';
-import AgentPage from './src/pages/agent/agent'
-import EarnPage from './src/pages/earnDetail/EarnPage'
-import WithdrawList from './src/pages/withdrawHis/withdrawList'
+import AgentPage from './src/pages/agent/agent';
+import EarnPage from './src/pages/earnDetail/EarnPage';
+import WithdrawList from './src/pages/withdrawHis/withdrawList';
+import CardListPage from './src/pages/card/cardList';
+import AddCard from './src/pages/card/addCard';
 
 const Stack = createStackNavigator();
 
@@ -29,6 +33,10 @@ function App() {
           <Stack.Screen name="Agent" component={AgentPage} options={{ title: '我的代理', headerShown: false }} />
           <Stack.Screen name="Earn" component={EarnPage} options={{ title: '收益明细', headerShown: false }} />
           <Stack.Screen name="WithdrawList" component={WithdrawList} options={{ title: '提现记录', headerShown: false }} />
+          <Stack.Screen name="MineDetail" component={MineDetailPage} options={{ title: '个人信息', headerShown: false }} />
+          <Stack.Screen name="EditName" component={EditNagePage} options={{ title: '个人信息', headerShown: false }} />
+          <Stack.Screen name="CardList" component={CardListPage} options={{ title: '我的银行卡', headerShown: false }} />
+          <Stack.Screen name="AddCard" component={AddCard} options={{ title: '添加银行卡STEP1', headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

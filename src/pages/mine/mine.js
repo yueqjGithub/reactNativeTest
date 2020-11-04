@@ -19,12 +19,14 @@ const MinePage = ({ navigation, route }) => {
   })
 
   useEffect(() => {
-    queryMine()
-  }, [])
+    const unsubscribe = navigation.addListener('focus', () => {
+      queryMine()
+    });
+    return unsubscribe;
+  }, [navigation])
 
   const queryMine = () => {
     http.post(urls.queryMine).then(res => {
-      console.log(res)
       setInfo(res.user)
     })
   }
@@ -69,35 +71,47 @@ const MinePage = ({ navigation, route }) => {
     );
   }
 
+  const toDetail = () => {
+    navigation.navigate('MineDetail', {
+      photo: info.photo,
+      user_name: info.user_name,
+      mobile: info.mobile,
+      userid: info.userid
+    })
+  }
+
   return (
     <SafeAreaView>
       <View style={[globalStyle.fillScreen, globalStyle.bgWhite]}>
         <CommonTit title={'我的'} navigation={navigation} showBackBtn={false}></CommonTit>
         {/* top */}
-        <View style={[globalStyle.paMd, globalStyle.flexRow, globalStyle.flexJstBtw, globalStyle.flexAliCenter]}>
-          <View style={{ width: 60, height: 60, borderRadius: 5 }}>
-            <Image source={info.photo !== null ? { uri: info.photo } : defaultAvatar} style={[globalStyle.fullHeight, globalStyle.fullWidth]}></Image>
-          </View>
-          {/* topRight */}
-          <View style={[globalStyle.flex1, globalStyle.flexRow, globalStyle.flexJstBtw, globalStyle.flexAliStart, globalStyle.paRowSm]}>
-            <View style={{ height: 55, ...globalStyle.flexJstArd, ...globalStyle.flexAliStart }}>
-              <Text style={{ fontSize: 17, color: '#333333', fontWeight: '700' }}>{info.user_name !== null ? info.user_name : '用户名'}</Text>
-              <Image source={require('../../assets/images/deg.png')} style={{ width: 84, height: 22 }}></Image>
+        <TouchableHighlight onPress={() => toDetail()} underlayColor={'transparent'}>
+          <View style={[globalStyle.paMd, globalStyle.flexRow, globalStyle.flexJstBtw, globalStyle.flexAliCenter]}>
+            <View style={{ width: 60, height: 60, borderRadius: 5 }}>
+              <Image source={info.photo !== null ? { uri: info.photo } : defaultAvatar} style={[globalStyle.fullHeight, globalStyle.fullWidth]}></Image>
+            </View>
+            {/* topRight */}
+            <View style={[globalStyle.flex1, globalStyle.flexRow, globalStyle.flexJstBtw, globalStyle.flexAliStart, globalStyle.paRowSm]}>
+              <View style={{ height: 55, ...globalStyle.flexJstArd, ...globalStyle.flexAliStart }}>
+                <Text style={{ fontSize: 17, color: '#333333', fontWeight: '700' }}>{info.user_name !== null ? info.user_name : '用户名'}</Text>
+                <Image source={require('../../assets/images/deg.png')} style={{ width: 84, height: 22 }}></Image>
+              </View>
             </View>
           </View>
-        </View>
+        </TouchableHighlight>
         {/* menuList */}
         <View style={[globalStyle.paMd]}>
           <TouchableHighlight style={[globalStyle.fullWidth, globalStyle.flexRow, globalStyle.flexJstStart, globalStyle.flexAliCenter, globalStyle.paColMd, style.listBorder]}
             underlayColor={'transparent'}
+            onPress={() => navigation.navigate('CardList')}
           >
-            <Text style={{ fontSize: 18, color: '#333333', fontWeight: '800' }}>银行卡</Text>
+            <Text style={{ fontSize: 17, color: '#333333', fontWeight: '800' }}>银行卡</Text>
           </TouchableHighlight>
           <TouchableHighlight style={[globalStyle.fullWidth, globalStyle.flexRow, globalStyle.flexJstStart, globalStyle.flexAliCenter, globalStyle.paColMd]}
             underlayColor={'transparent'}
             onPress={() => logOut()}
           >
-            <Text style={{ fontSize: 18, color: '#CCCCCC', fontWeight: '800' }}>退出登录</Text>
+            <Text style={{ fontSize: 17, color: '#CCCCCC', fontWeight: '800' }}>退出登录</Text>
           </TouchableHighlight>
         </View>
         <View style={[style.cusTabStyle, globalStyle.paRowLg, globalStyle.paColMd, globalStyle.flexRow, globalStyle.flexJstCenter, globalStyle.flexAliCenter]}>

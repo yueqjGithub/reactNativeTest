@@ -7,6 +7,12 @@ const globalStyle = StyleSheet.create({
   bgDebug1: {
     backgroundColor: 'yellow'
   },
+  bgWhite: {
+    backgroundColor: '#ffffff'
+  },
+  bgLightGrey: {
+    backgroundColor: '#f8f8f8'
+  },
   // *
   fillScreen: {
     width: '100%',
@@ -18,12 +24,17 @@ const globalStyle = StyleSheet.create({
   fullHeight: {
     height: '100%'
   },
-  bgWhite: {
-    backgroundColor: '#ffffff'
-  },
   // pa-ma
   maSM: {
     margin: 10,
+  },
+  maColSm: {
+    marginTop: 10,
+    marginBottom: 10
+  },
+  maColMd: {
+    marginTop: 20,
+    marginBottom: 20
   },
   paMd: {
     padding: 20

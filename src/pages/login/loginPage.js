@@ -159,7 +159,7 @@ const LoginPage = ({ navigation }) => {
         {/*登录按钮Container*/}
         <View style={[style.btnContainer, globalStyle.flexJstCenter, globalStyle.flexAliCenter]}>
           <View style={[style.btnItem]}>
-            <Button title="登录" onPress={() => toIndex()} disabled={!mobile || !code || !mobileReg || loginLoading} buttonStyle={{ backgroundColor: '#EF4A44', color: '#ffffff' }}
+            <Button title="登录" disabled={!mobile || !code || !mobileReg || loginLoading} buttonStyle={{ backgroundColor: '#EF4A44', color: '#ffffff' }}
             onPress={() => codeLogin()} loading={loginLoading}
             />
           </View>
