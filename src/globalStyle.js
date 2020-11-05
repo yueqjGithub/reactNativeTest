@@ -118,6 +118,12 @@ const globalStyle = StyleSheet.create({
   flexAliCenter: {
     alignItems: 'center'
   },
+  flexAliBase: {
+    alignItems: 'baseline'
+  },
+  selfStretch: {
+    alignSelf: 'stretch'
+  },
   // font
   titFont: {
     fontSize: 18,

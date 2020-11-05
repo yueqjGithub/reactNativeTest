@@ -84,9 +84,10 @@ export default AddCard = ({ navigation }) => {
     }
     setLoading(true)
     http.post(urls.addCard, obj).then(res => {
+      console.log(res)
       setLoading(false)
       if (res.code === 'success') {
-        navigation.navigate('CardList') // 到下一步
+        navigation.goBack() // 回到
       } else {
         toastRef.current.show(res.msg, 2000)
       }
@@ -145,7 +146,7 @@ export default AddCard = ({ navigation }) => {
           {/* 下一步按钮 */}
           <View style={[globalStyle.fullWidth, globalStyle.flexRow, globalStyle.flexJstCenter, globalStyle.flexAliCenter, globalStyle.paLg]}>
             <View style={[globalStyle.fullWidth]}>
-              <Button title="下一步"
+              <Button title="完成"
                 onPress={() => commitBankInfo()} disabled={!ownerVali || !cardNumVali || !bankName || !openVali}
                 buttonStyle={{ backgroundColor: '#EF4A44', color: '#ffffff' }}
                 loading={loading}

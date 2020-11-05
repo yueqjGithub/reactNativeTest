@@ -164,7 +164,7 @@ const LoginPage = ({ navigation }) => {
             />
           </View>
           <View style={[style.btnItem, globalStyle.paColMd]}>
-            <Button title="微信授权登录" onPress={() => {}} buttonStyle={{color: '#ffffff'}}
+            {/* <Button title="微信授权登录" onPress={() => {}} buttonStyle={{color: '#ffffff'}}
             icon={
               <Image source={require('../../assets/images/weixin.png')} style={{width: 21,height: 17, marginRight: 3}}></Image>
             }
@@ -174,7 +174,7 @@ const LoginPage = ({ navigation }) => {
               start: { x: 1, y: 0 },
               end: { x: 0, y: 0.5 },
             }}
-            />
+            /> */}
           </View>
         </View>
       </View>

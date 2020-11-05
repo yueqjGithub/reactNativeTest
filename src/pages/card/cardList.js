@@ -7,6 +7,7 @@ import { useRoute } from '@react-navigation/native';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import http from '../../utils/myFetch';
 import urls from '../../utils/urls';
+import CardItem from './cardItem';
 
 export default CardList = ({ navigation }) => {
   const route = useRoute()
@@ -31,11 +32,19 @@ export default CardList = ({ navigation }) => {
       <View style={[globalStyle.fillScreen, globalStyle.bgWhite]}>
         <CommonTit title={'我的银行卡'} navigation={navigation} showBackBtn={true}></CommonTit>
         <ScrollView style={[globalStyle.flex1]}>
-          <View style={[globalStyle.paRowMd, globalStyle.paColLg]}>
+          <View style={[globalStyle.paRowMd, globalStyle.paColMd]}>
             <Text style={{ fontSize: 18, color: '#333333', fontWeight: '700' }}>我的银行卡</Text>
           </View>
-          <View style={[globalStyle.paMd]}>
-            {/* 银行卡列表预留 */}
+          <View style={[globalStyle.paRowMd, globalStyle.paColSm]}>
+            {
+              dataList.map(item => {
+                return (
+                  <View style={[styles.listItem, globalStyle.maColSm]}>
+                    <CardItem bankName={item?.bank_name} cardNumber={item?.card_num}></CardItem>
+                  </View>
+                )
+              })
+            }
             <TouchableHighlight
             underlayColor={'transparent'}
             style={[styles.listItem, globalStyle.maColSm]}
@@ -59,6 +68,7 @@ const styles = StyleSheet.create({
     width: '100%',
     borderRadius: 6,
     height: 120,
-    backgroundColor: '#f8f8f8'
+    backgroundColor: '#f8f8f8',
+    overflow: 'hidden'
   }
 })

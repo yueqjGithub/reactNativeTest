@@ -12,4 +12,6 @@ export default {
   queryAgentTotal: '/api/c/agent/sub_member_summary.vm', // 代理统计
   queryCardList: '/api/c/agent/bank_card_list.vm', // 银行卡列表
   addCard: '/ass/gen/cf/cf_bank_card/create.vm', // 添加银行卡
+  queryBalance: '/api/c/finance/account.vm', // 查询账户余额
+  withdrawToBank: '/api/c/finance/wx_withdraw_bank.vm', // 提现
 }

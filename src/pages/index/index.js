@@ -57,6 +57,7 @@ const IndexPage = ({ navigation, route }) => {
               <View>
                 <Button title={'提现'} titleStyle={{ fontSize: 14, ...style.cardText }} buttonStyle={{ height: 30, ...globalStyle.paRowMd }}
                   ViewComponent={LinearGradient}
+                  onPress={() => navigation.navigate('Withdraw')}
                   linearGradientProps={{
                     colors: ['#393939', '#1D1D1D'],
                     start: { x: 0, y: 0 },

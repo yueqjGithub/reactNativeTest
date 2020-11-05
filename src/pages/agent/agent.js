@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, ImageBackground, StyleSheet, FlatList, Button, TouchableHighlight, Image } from 'react-native';
+import { View, Text, ImageBackground, StyleSheet, FlatList, Button, TouchableHighlight, Image, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CommonTit from '../../components/commonTit';
 import { globalStyle } from '../../globalStyle';
 import http from '../../utils/myFetch';
 import urls from '../../utils/urls';
 import Toast, { DURATION } from 'react-native-easy-toast';
-import ActionSheet from 'react-native-actionsheet'
+import ActionSheet from 'react-native-actionsheet';
 
 const listItem = ({ item, openSheet }) => {
   const phonePic = require('../../assets/images/phone.png')
@@ -39,6 +39,7 @@ export default CustomerPage = ({ navigation }) => {
   const toastRef = useRef(null)
   const sheetRef = useRef(null)
   const [sheetOptions, setOptions] = useState([])
+  const [curMobile, setCurMobile] = useState(null)
 
   useEffect(() => {
     http.post(urls.queryAgentTotal).then(res => {
@@ -73,6 +74,7 @@ export default CustomerPage = ({ navigation }) => {
   }
 
   const getOptions = (mobile) => {
+    setCurMobile(mobile)
     return [
       <Text style={{color: '#333333'}}>拨打 {mobile}</Text>,
       '取消'
@@ -83,6 +85,11 @@ export default CustomerPage = ({ navigation }) => {
     const newOptions = getOptions(mobile)
     setOptions(newOptions)
     sheetRef.current.show()
+  }
+
+  const callHandler = () => {
+    const result = `tel:${curMobile}`
+    Linking.openURL(result)
   }
 
   return (
@@ -132,7 +139,7 @@ export default CustomerPage = ({ navigation }) => {
         title={''}
         options={sheetOptions}
         cancelButtonIndex={1}
-        onPress={(index) => { /* do something */ }}
+        onPress={(index) => {callHandler(index)}}
       />
     </SafeAreaView>
   )
