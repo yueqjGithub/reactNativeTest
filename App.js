@@ -19,6 +19,7 @@ import WithdrawList from './src/pages/withdrawHis/withdrawList';
 import CardListPage from './src/pages/card/cardList';
 import AddCard from './src/pages/card/addCard';
 import WithdrawPage from './src/pages/withdraw/withdraw';
+import WithdrawDetail from './src/pages/withdrawHis/withdrawDetail';
 
 const Stack = createStackNavigator();
 
@@ -39,6 +40,7 @@ function App() {
           <Stack.Screen name="CardList" component={CardListPage} options={{ title: '我的银行卡', headerShown: false }} />
           <Stack.Screen name="AddCard" component={AddCard} options={{ title: '添加银行卡STEP1', headerShown: false }} />
           <Stack.Screen name="Withdraw" component={WithdrawPage} options={{ title: '提现', headerShown: false }} />
+          <Stack.Screen name="WithdrawDetail" component={WithdrawDetail} options={{ title: '提现详情', headerShown: false }} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

@@ -12,23 +12,6 @@ const getEnd = val => {
   return String(val).substr((len - 4), 4)
 }
 
-const listItem = ({ item }) => {
-  return (
-    <TouchableHighlight style={[globalStyle.fullWidth, globalStyle.flexJstard, globalStyle.flexAliCenter, globalStyle.paColMd]} underlayColor={'transparent'}>
-      <View style={[globalStyle.fullWidth, globalStyle.fullHeight]}>
-        <View style={[globalStyle.fullWidth, globalStyle.flexRow, globalStyle.flexJstBtw, globalStyle.flexAliEnd]}>
-          <Text style={{ fontSize: 16, fontFamily: 'DINEngschrift', color: '#333333' }}>提现_{item.bank_name}({getEnd(item.card_num)})</Text>
-          <Text style={{ fontSize: 22, fontFamily: 'DINEngschrift', color: '#333333' }}>{item.mount}</Text>
-        </View>
-        <View style={[globalStyle.fullWidth, globalStyle.flexRow, globalStyle.flexJstBtw, globalStyle.flexAliCenter]}>
-          <Text style={{ fontSize: 14, color: '#AAABAB' }}>{item.create_time}</Text>
-          <Text style={{ fontSize: 14, color: '#AAABAB' }}></Text>
-        </View>
-      </View>
-    </TouchableHighlight>
-  )
-}
-
 export default WithdrawList = ({ navigation }) => {
   const [cur, setCur] = useState(1)
   const [dataList, setList] = useState([])
@@ -53,6 +36,28 @@ export default WithdrawList = ({ navigation }) => {
       }
     })
   }
+
+  const openDetail = val => {
+    navigation.navigate('WithdrawDetail', { isRecord: true, target: val })
+  }
+
+  const listItem = ({item}) => {
+    return (
+      <TouchableHighlight style={[globalStyle.fullWidth, globalStyle.flexJstard, globalStyle.flexAliCenter, globalStyle.paColMd]} underlayColor={'transparent'} onPress={() => openDetail(item)}>
+        <View style={[globalStyle.fullWidth]}>
+          <View style={[globalStyle.fullWidth, globalStyle.flexRow, globalStyle.flexJstBtw, globalStyle.flexAliEnd]}>
+            <Text style={{ fontSize: 16, fontFamily: 'DINEngschrift', color: '#333333' }}>提现_{item.bank_code}({getEnd(item.enc_bank_no)})</Text>
+            <Text style={{ fontSize: 22, fontFamily: 'DINEngschrift', color: '#333333' }}>{item.amount}</Text>
+          </View>
+          <View style={[globalStyle.fullWidth, globalStyle.flexRow, globalStyle.flexJstBtw, globalStyle.flexAliCenter]}>
+            <Text style={{ fontSize: 14, color: '#AAABAB' }}>{item.create_time}</Text>
+            <Text style={{ fontSize: 14, color: '#AAABAB' }}></Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+    )
+  }
+
   return (
     <SafeAreaView>
       <View style={[globalStyle.fillScreen, globalStyle.bgWhite]}>
@@ -71,7 +76,8 @@ export default WithdrawList = ({ navigation }) => {
                 <Text style={{ fontSize: 14, color: '#aaaaaa' }}>没有数据</Text>
               </View>
             }
-            keyExtractor={item => `${item}${Math.random() * 100}`}
+            keyExtractor={item => String(item.id)}
+            extraData={dataList}
           />
         </View>
       </View>

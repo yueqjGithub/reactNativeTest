@@ -8,27 +8,7 @@ import urls from '../../utils/urls';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import ActionSheet from 'react-native-actionsheet';
 
-const listItem = ({ item, openSheet }) => {
-  const phonePic = require('../../assets/images/phone.png')
-  return (
-    <View style={[globalStyle.fullWidth, globalStyle.flexJstard, globalStyle.flexAliCenter, globalStyle.paColMd]}>
-      <View style={[globalStyle.fullWidth, globalStyle.flexRow, globalStyle.flexJstBtw, globalStyle.flexAliEnd]}>
-        <Text style={{ fontSize: 18, fontFamily: 'DINEngschrift', color: '#333333' }}>{item.user_name}</Text>
-        <Text style={{ fontSize: 22, fontFamily: 'DINEngschrift', color: '#333333' }}>{item.total_amount}</Text>
-      </View>
-      <View style={[globalStyle.fullWidth, globalStyle.flexRow, globalStyle.flexJstBtw, globalStyle.flexAliCenter]}>
-        <Text style={{ fontSize: 14, color: '#AAABAB' }}>绑定时间 {item.create_time}</Text>
-        <Text style={{ fontSize: 14, color: '#AAABAB' }}>总提成</Text>
-      </View>
-      <View style={[globalStyle.fullWidth, globalStyle.flexRow, globalStyle.flexJstBtw, globalStyle.flexAliEnd]}>
-        <Text style={{ fontSize: 14, color: '#AAABAB' }}>联系方式 {item.mobile}</Text>
-        <TouchableHighlight underlayColor={'transparent'} style={{width: 30, height: 30, ...globalStyle.flexJstCenter, ...globalStyle.flexAliCenter}} onPress={() => openSheet(item.mobile)}>
-          <Image source={phonePic} style={{width: 30, height: 30}}></Image>
-        </TouchableHighlight>
-      </View>
-    </View>
-  )
-}
+
 
 
 export default CustomerPage = ({ navigation }) => {
@@ -92,6 +72,28 @@ export default CustomerPage = ({ navigation }) => {
     Linking.openURL(result)
   }
 
+  const listItem = ({ item }) => {
+    const phonePic = require('../../assets/images/phone.png')
+    return (
+      <View style={[globalStyle.fullWidth, globalStyle.flexJstard, globalStyle.flexAliCenter, globalStyle.paColMd]}>
+        <View style={[globalStyle.fullWidth, globalStyle.flexRow, globalStyle.flexJstBtw, globalStyle.flexAliEnd]}>
+          <Text style={{ fontSize: 18, fontFamily: 'DINEngschrift', color: '#333333' }}>{item.user_name}</Text>
+          <Text style={{ fontSize: 22, fontFamily: 'DINEngschrift', color: '#333333' }}>{item.total_amount}</Text>
+        </View>
+        <View style={[globalStyle.fullWidth, globalStyle.flexRow, globalStyle.flexJstBtw, globalStyle.flexAliCenter]}>
+          <Text style={{ fontSize: 14, color: '#AAABAB' }}>绑定时间 {item.create_time}</Text>
+          <Text style={{ fontSize: 14, color: '#AAABAB' }}>总提成</Text>
+        </View>
+        <View style={[globalStyle.fullWidth, globalStyle.flexRow, globalStyle.flexJstBtw, globalStyle.flexAliEnd]}>
+          <Text style={{ fontSize: 14, color: '#AAABAB' }}>联系方式 {item.mobile}</Text>
+          <TouchableHighlight underlayColor={'transparent'} style={{width: 30, height: 30, ...globalStyle.flexJstCenter, ...globalStyle.flexAliCenter}} onPress={() => openSheet(item.mobile)}>
+            <Image source={phonePic} style={{width: 30, height: 30}}></Image>
+          </TouchableHighlight>
+        </View>
+      </View>
+    )
+  }
+
   return (
     <SafeAreaView>
       <View style={[globalStyle.fillScreen, globalStyle.bgWhite]}>
@@ -120,10 +122,7 @@ export default CustomerPage = ({ navigation }) => {
               dataList.length >= 20 ? loadPage() : ''
             }}
             data={dataList}
-            renderItem={({item}) => {
-              <listItem item={item} openSheet={val => {openSheet(val)}}></listItem>
-            }
-            }
+            renderItem={listItem}
             ListEmptyComponent={
               <View style={[globalStyle.paMd, globalStyle.fullWidth, globalStyle.flexRow, globalStyle.flexJstCenter, globalStyle.flexAliCenter]}>
                 <Text style={{ fontSize: 14, color: '#aaaaaa' }}>没有数据</Text>

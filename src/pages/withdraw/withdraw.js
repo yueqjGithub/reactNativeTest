@@ -99,7 +99,15 @@ export default Withdraw = ({ navigation }) => {
     http.post(urls.withdrawToBank, obj).then(res => {
       setLoading(false)
       if (res.code === 'success') {
-        console.log(res)
+        navigation.navigate('WithdrawDetail', {
+          isRecord: false,
+          target: {
+            bank_code: chooseCard.bank_name,
+            enc_bank_no: chooseCard.card_num,
+            amount: amount,
+            status: 0
+          }
+        })
       } else {
         toastRef.current.show(res.msg, 2000)
       }
