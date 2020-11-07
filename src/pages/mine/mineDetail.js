@@ -20,7 +20,7 @@ export default MinePage = ({ navigation }) => {
   const defaultAvatar = require('../../assets/images/defaultAvatar.png')
 
   const toEdit = () => {
-    navigation.navigate('EditName', {user_name: route.params.user_name})
+    navigation.navigate('EditName', { user_name: route.params.user_name })
   }
 
   return (
@@ -38,12 +38,13 @@ export default MinePage = ({ navigation }) => {
               </View>
             </View>
             {/* nickName */}
-            <View style={[globalStyle.flexRow, globalStyle.flexJstBtw, globalStyle.flexAliCenter, globalStyle.paColMd]}>
-              <Text style={[styles.label]}>昵称</Text>
-              <TouchableHighlight underlayColor={'transparent'} onPress={() => toEdit()}>
+            <TouchableHighlight underlayColor={'transparent'} onPress={() => toEdit()} style={[globalStyle.fullWidth]}>
+              <View style={[globalStyle.flexRow, globalStyle.flexJstBtw, globalStyle.flexAliCenter, globalStyle.paColMd]}>
+                <Text style={[styles.label]}>昵称</Text>
                 <Text style={{ fontSize: 14, color: '#999999' }}>{route.params.user_name ? route.params.user_name : '点击设置'} &gt;</Text>
-              </TouchableHighlight>
-            </View>
+
+              </View>
+            </TouchableHighlight>
           </View>
           {/* mobile */}
           <View style={[globalStyle.fullWidth, globalStyle.bgWhite, globalStyle.paRowMd, globalStyle.paColSm, styles.contItem, globalStyle.maColMd]}>
